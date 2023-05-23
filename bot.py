@@ -1,8 +1,8 @@
 from telethon.sync import TelegramClient, events
 from telethon.tl import functions, types
 
-api_id = 'ID'
-api_hash = 'HASH'
+api_id = 'API'
+api_hash = 'API_HASH'
 phone_number = 'PHONE'
 
 channel_entity = None
@@ -39,7 +39,7 @@ with TelegramClient('session_name', api_id, api_hash) as client:
  
                         photo = await client.download_profile_photo(entity)
                         result = await client(functions.channels.EditPhotoRequest(
-                           photo= client.upload_file(photo),
+                           photo=  await client.upload_file(photo),
                            channel= new_channel_entity
                         ))
                         print('Аватарка успешно скопирована')
